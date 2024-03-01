@@ -74,27 +74,51 @@ namespace math
 //https://eprints.maths.manchester.ac.uk/694/1/high86p.pdf
 	void Matrix::DecomposePolar(Matrix& _R, Matrix& _S) const
 	{
+		//constexpr float TOL = 1e-6f;
+
+		//Matrix matRH = (*this).Transpose();
+		//Matrix Xprev{};
+		//Matrix X = matRH;
+		//Matrix Y{};
+		//do
+		//{
+		//	Xprev = X;
+		//	Y = X.Invert().Transpose();
+		//	X = X.Interpolate(Y, 0.5f);
+
+		//	Y.set(X).invert();
+		//	Xprev.set(X);s
+		//	X.interpolate(X, Y.transpose(), 0.5f);
+		//} while ((X - Xprev).NormDividedBy1() > (TOL * Xprev.NormDividedBy1()));
+		//while (X.clone().sub(Xprev).norm1() > TOL * Xprev.norm1());
+
+		//_R = X.Transpose();
+		//_S = (X.Transpose() * matRH).Transpose();
+		//outQ.set(X);
+		//outP.set(X).transpose().mulBefore(this);
+		
+
+
 		constexpr float TOL = 1e-6f;
 
-		Matrix matRH = (*this).Transpose();
+		//Matrix matRH = (*this).Transpose();
 		Matrix Xprev{};
-		Matrix X = matRH;
+		Matrix X = *this;
 		Matrix Y{};
 		do 
 		{
 			Xprev = X;
-			Y = X.Invert();
-			Y = Y.Transpose();
+			Y = X.Invert().Transpose();
 			X = X.Interpolate(Y, 0.5f);
 
 			//Y.set(X).invert();
-			//Xprev.set(X);
+			//Xprev.set(X);s
 			//X.interpolate(X, Y.transpose(), 0.5f);
 		} while ((X - Xprev).NormDividedBy1() > (TOL * Xprev.NormDividedBy1()));
 		//while (X.clone().sub(Xprev).norm1() > TOL * Xprev.norm1());
 		 
-		_R = X.Transpose();
-		_S = X.Transpose() * matRH;
+		_R = X;
+		_S = X * (*this).Transpose();
 		//outQ.set(X);
 		//outP.set(X).transpose().mulBefore(this);
 	}
