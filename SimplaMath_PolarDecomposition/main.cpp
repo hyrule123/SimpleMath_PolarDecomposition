@@ -37,7 +37,7 @@ int main()
 		* math::Matrix::CreateFromYawPitchRoll(answerRot)
 		* math::Matrix::CreateTranslation(answerTranslation);
 
-	
+	//Sign test
 	math::Matrix test = answer * answer.Transpose();
 	float scaleSign[3];
 	for (int i = 0; i < 3; ++i)
@@ -49,32 +49,35 @@ int main()
 		}
 	}
 
-	math::Matrix childWorld{};
-	{
-		using namespace math;
-		Matrix child = Matrix::Identity;
-		Matrix parent = Matrix::Identity;
+	//Matrix of multiple transformation matrix being multiplied
+	//math::Matrix childWorld{};
+	//{
+	//	using namespace math;
+	//	Matrix child = Matrix::Identity;
+	//	Matrix parent = Matrix::Identity;
 
-		Vector3 parentScale = Vector3(1.f, 2.f, 3.f);
-		Quaternion parentRot = Quaternion::CreateFromYawPitchRoll(Vector3(XM_PI / 1.f, XM_PI / 2.f, XM_PI / 3.f));
-		Vector3 parentPos = Vector3(3.f, 2.f, 1.f);
+	//	Vector3 parentScale = Vector3(1.f, 2.f, 3.f);
+	//	Quaternion parentRot = Quaternion::CreateFromYawPitchRoll(Vector3(XM_PI / 1.f, XM_PI / 2.f, XM_PI / 3.f));
+	//	Vector3 parentPos = Vector3(3.f, 2.f, 1.f);
 
-		parent *= Matrix::CreateScale(parentScale);
-		parent *= Matrix::CreateFromQuaternion(parentRot);
-		parent *= Matrix::CreateTranslation(parentPos);
+	//	parent *= Matrix::CreateScale(parentScale);
+	//	parent *= Matrix::CreateFromQuaternion(parentRot);
+	//	parent *= Matrix::CreateTranslation(parentPos);
 
-		Vector3 childScale = Vector3(4.f, 3.f, 2.f);
-		Quaternion childRot = Quaternion::CreateFromYawPitchRoll(Vector3(XM_PI * 3.1235f, XM_PI * 12.3853f, XM_PI * 8.192f));
-		Vector3 childPos = Vector3(4.f, 8.f, 12.f);
-		child *= Matrix::CreateScale(childScale);
-		child *= Matrix::CreateFromQuaternion(childRot);
-		child *= Matrix::CreateTranslation(childPos);
+	//	Vector3 childScale = Vector3(4.f, 3.f, 2.f);
+	//	Quaternion childRot = Quaternion::CreateFromYawPitchRoll(Vector3(XM_PI * 3.1235f, XM_PI * 12.3853f, XM_PI * 8.192f));
+	//	Vector3 childPos = Vector3(4.f, 8.f, 12.f);
+	//	child *= Matrix::CreateScale(childScale);
+	//	child *= Matrix::CreateFromQuaternion(childRot);
+	//	child *= Matrix::CreateTranslation(childPos);
 
-		childWorld = child * parent;
-	}
+	//	childWorld = child * parent;
+	//}
 
 
-	math::Matrix H = childWorld;
+	//================================ Decompose procedure =================================================
+	//Set 'H' matrix what you want to decompose.
+	math::Matrix H = answer;
 	
 	math::Matrix L = H;
 	math::Matrix T = math::Matrix::CreateTranslation(H.Translation());
@@ -121,7 +124,7 @@ int main()
 	auto eigVec = solver.eigenvectors();
 	auto eigVal = solver.eigenvalues();
 
-	//Scale일 것이라 예상되는 값
+	//may be scale value?
 	math::Vector4 f{};
 	f.x = eigVal(0).real();
 	f.y = eigVal(1).real();
@@ -176,8 +179,7 @@ int main()
 	}
 
 
-
-
+	//Combined transformation matrix cannot use this decomposition method.
 	math::Matrix recomposed =
 		math::Matrix::CreateScale(scale)
 		* R
@@ -185,12 +187,14 @@ int main()
 
 	MatrixCmp(MATRIX_NAME(answer), MATRIX_NAME(recomposed));
 
+
+
 	return 0;
 }
 
 void PrintMatrix(const char* _matName, const math::Matrix& _mat)
 {
-	std::cout << "\n행렬 이름: " << _matName << std::endl;
+	std::cout << "\nMATRIX NAME: " << _matName << std::endl;
 
 	for (int i = 0; i < 4; ++i)
 	{

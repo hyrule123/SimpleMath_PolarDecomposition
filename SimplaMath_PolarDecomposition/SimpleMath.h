@@ -1,8 +1,4 @@
 #pragma once
-//이 헤더를 바로 include하지 말고 CommonTypes.h를 include 할 것
-
-
-
 #if __has_include("DirectXMath.h")
 // In this case, DirectXMath is coming from Windows SDK.
 //	It is better to use this on Windows as some Windows libraries could depend on the same 
@@ -50,7 +46,7 @@ namespace math
         END
     };
 
-    //직관적인 방향
+    //Intuitive directions
     enum class eDirectionType
     {
         RIGHT,

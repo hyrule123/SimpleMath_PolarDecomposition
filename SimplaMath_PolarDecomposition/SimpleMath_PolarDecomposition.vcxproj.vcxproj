@@ -428,7 +428,97 @@
     <ClInclude Include="SimpleMath.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Eigen\Cholesky">
+      <FileType>Document</FileType>
+    </ClInclude>
+    <ClInclude Include="Eigen\CholmodSupport">
+      <FileType>Document</FileType>
+    </ClInclude>
+    <ClInclude Include="Eigen\Core">
+      <FileType>Document</FileType>
+    </ClInclude>
+    <ClInclude Include="Eigen\Dense">
+      <FileType>Document</FileType>
+    </ClInclude>
+    <ClInclude Include="Eigen\Eigen">
+      <FileType>Document</FileType>
+    </ClInclude>
+    <ClInclude Include="Eigen\Eigenvalues">
+      <FileType>Document</FileType>
+    </ClInclude>
+    <ClInclude Include="Eigen\Geometry">
+      <FileType>Document</FileType>
+    </ClInclude>
+    <ClInclude Include="Eigen\Householder">
+      <FileType>Document</FileType>
+    </ClInclude>
+    <ClInclude Include="Eigen\IterativeLinearSolvers">
+      <FileType>Document</FileType>
+    </ClInclude>
+    <ClInclude Include="Eigen\Jacobi">
+      <FileType>Document</FileType>
+    </ClInclude>
+    <ClInclude Include="Eigen\LU">
+      <FileType>Document</FileType>
+    </ClInclude>
+    <ClInclude Include="Eigen\MetisSupport">
+      <FileType>Document</FileType>
+    </ClInclude>
+    <ClInclude Include="Eigen\OrderingMethods">
+      <FileType>Document</FileType>
+    </ClInclude>
+    <ClInclude Include="Eigen\PardisoSupport">
+      <FileType>Document</FileType>
+    </ClInclude>
+    <ClInclude Include="Eigen\PaStiXSupport">
+      <FileType>Document</FileType>
+    </ClInclude>
+    <ClInclude Include="Eigen\QR">
+      <FileType>Document</FileType>
+    </ClInclude>
+    <ClInclude Include="Eigen\QtAlignedMalloc">
+      <FileType>Document</FileType>
+    </ClInclude>
+    <ClInclude Include="Eigen\Sparse">
+      <FileType>Document</FileType>
+    </ClInclude>
+    <ClInclude Include="Eigen\SparseCholesky">
+      <FileType>Document</FileType>
+    </ClInclude>
+    <ClInclude Include="Eigen\SparseCore">
+      <FileType>Document</FileType>
+    </ClInclude>
+    <ClInclude Include="Eigen\SparseLU">
+      <FileType>Document</FileType>
+    </ClInclude>
+    <ClInclude Include="Eigen\SparseQR">
+      <FileType>Document</FileType>
+    </ClInclude>
+    <ClInclude Include="Eigen\SPQRSupport">
+      <FileType>Document</FileType>
+    </ClInclude>
+    <ClInclude Include="Eigen\StdDeque">
+      <FileType>Document</FileType>
+    </ClInclude>
+    <ClInclude Include="Eigen\StdList">
+      <FileType>Document</FileType>
+    </ClInclude>
+    <ClInclude Include="Eigen\StdVector">
+      <FileType>Document</FileType>
+    </ClInclude>
+    <ClInclude Include="Eigen\SuperLUSupport">
+      <FileType>Document</FileType>
+    </ClInclude>
+    <ClInclude Include="Eigen\SVD">
+      <FileType>Document</FileType>
+    </ClInclude>
+    <ClInclude Include="Eigen\UmfPackSupport">
+      <FileType>Document</FileType>
+    </ClInclude>
     <None Include="SimpleMath.inl" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="Eigen\CMakeLists.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
